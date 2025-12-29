@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wp-recon-suite"
+version = "0.1.0"
+description = "Professional, safe-by-default WordPress reconnaissance CLI tool for Kali Linux"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "WordPress Recon Suite Team"}
+]
+keywords = ["wordpress", "reconnaissance", "security", "cli", "enumeration"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: System :: Networking",
+    "Topic :: System :: Monitoring",
+]
+
+dependencies = [
+    "click>=8.1.0",
+    "httpx>=0.25.0",
+    "tenacity>=8.2.3",
+    "pydantic>=2.5.0",
+    "pyyaml>=6.0",
+    "rich>=13.7.0",
+    "jinja2>=3.1.0",
+]
+
+[project.optional-dependencies]
+pdf = ["weasyprint>=60.0"]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.12.0",
+    "pytest-httpx>=0.30.0",
+    "black>=23.12.0",
+    "ruff>=0.1.9",
+    "mypy>=1.7.0",
+]
+
+[project.scripts]
+wp-recon-suite = "wp_recon_suite.cli:main"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "W", "I", "UP", "C4", "B", "PIE"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=wp_recon_suite --cov-report=term-missing --cov-report=html"

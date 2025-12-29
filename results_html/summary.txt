@@ -1,0 +1,37 @@
+================================================================================
+WordPress Recon Suite - Scan Results
+================================================================================
+
+Target: https://game3rb.com
+Timestamp: 2025-12-29T21:05:59.442365Z
+
+Legal Status:
+  Safe-only mode: True
+  Aggressive mode: False
+
+Sensitive Files:
+  ✓ /readme.html - HTTP 200 (exposed)
+  ✓ /license.txt - HTTP 200 (exposed)
+  ✗ /wp-config.php.bak - HTTP 403 (forbidden (exists but not accessible))
+  ✗ /.git/config - HTTP 404 (not found)
+  ✗ /debug.log - HTTP 404 (not found)
+
+REST API:
+  Found: True
+  Users enumerated: 4
+    - Admin (haritkaraman)
+    - Anne (anne)
+    - Raven (raven)
+    - Zoro (zoro)
+
+XML-RPC:
+  Found: False
+  Pingback enabled: False
+
+Authors Found:
+  ID 1: haritkaraman
+  ID 7: anne
+  ID 13: zoro
+  ID 14: raven
+
+================================================================================

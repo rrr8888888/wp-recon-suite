@@ -1,0 +1,152 @@
+# wp-recon-suite Configuration Example
+# Copy this file to config.yaml and customize as needed
+
+# Global HTTP settings
+http:
+  # Request timeout in seconds
+  timeout: 10
+  
+  # Verify SSL certificates
+  verify_ssl: true
+  
+  # Number of retries for failed requests
+  retries: 3
+  
+  # Backoff multiplier between retries
+  retry_backoff: 1.0
+  
+  # User-Agent string to use
+  user_agent: "wp-recon-suite/0.1.0 (reconnaissance tool)"
+
+# Sensitive files module configuration
+sensitive_files:
+  # Enable this module
+  enabled: true
+  
+  # Paths to check for exposure
+  paths:
+    - /readme.html
+    - /license.txt
+    - /wp-config.php
+    - /wp-config.php.bak
+    - /wp-config.php.old
+    - /wp-config.old
+    - /.git/config
+    - /.git/HEAD
+    - /debug.log
+    - /error.log
+    - /error_log
+    - /.env
+    - /.htaccess
+    - /web.config
+    - /composer.json
+    - /composer.lock
+    - /package.json
+    - /package-lock.json
+    - /Gemfile
+    - /Gemfile.lock
+    - /robots.txt
+    - /sitemap.xml
+    - /wp-json/
+    - /wp-json/wp/v2/users
+
+# REST API and XML-RPC module configuration
+rest_xmlrpc:
+  # Enable this module
+  enabled: true
+  
+  # Check for /wp-json/
+  check_rest: true
+  
+  # Attempt to enumerate users from /wp-json/wp/v2/users
+  enumerate_users: true
+  
+  # Check for /xmlrpc.php
+  check_xmlrpc: true
+
+# Author enumeration module configuration
+author_enum:
+  # Enable this module
+  enabled: true
+  
+  # Range of author IDs to check
+  author_id_range:
+    start: 1
+    end: 50
+  
+  # Follow redirects to extract author slugs
+  follow_redirects: true
+
+# ffuf (Fast web fuzzer) configuration
+ffuf:
+  # Enable ffuf scanning (if ffuf is installed)
+  enabled: true
+  
+  # Default wordlist path
+  wordlist: /usr/share/seclists/Discovery/Web-Content/CMS/wordpress.txt
+  
+  # File extensions to fuzz (e.g., php, txt, html, zip)
+  extensions: [php, txt, html, zip, bak, old, log, tar, gz]
+  
+  # Number of parallel threads
+  threads: 40
+  
+  # Rate limiting (0 = unlimited)
+  rate_limit: 0
+  
+  # Recursion depth (0 = no recursion)
+  recursion_depth: 0
+  
+  # Timeout in seconds
+  timeout: 10
+
+# WPScan configuration
+wpscan:
+  # Enable WPScan integration (if wpscan is installed)
+  enabled: true
+  
+  # Run aggressive checks
+  aggressive: false
+  
+  # API token (read from WPSCAN_API_TOKEN environment variable)
+  # If not set, will use anonymous scanning
+  token: ${WPSCAN_API_TOKEN}
+  
+  # WPScan arguments
+  extra_args: []
+
+# Output configuration
+output:
+  # Generate JSON output
+  json: true
+  
+  # Generate HTML report
+  html: true
+  
+  # Pretty-print terminal output
+  pretty_print: true
+  
+  # Include raw responses in JSON (set to false for large responses)
+  include_raw_responses: false
+
+# Logging configuration
+logging:
+  # Log level (DEBUG, INFO, WARNING, ERROR)
+  level: INFO
+  
+  # Write audit log
+  audit_log: true
+  
+  # Include subprocess commands in logs
+  log_commands: true
+  
+  # Mask sensitive environment variables
+  mask_secrets: true
+  
+  # Secrets to mask (patterns)
+  masked_patterns:
+    - "WPSCAN_API_TOKEN"
+    - "API_KEY"
+    - "SECRET"
+    - "PASSWORD"
+    - "TOKEN"
