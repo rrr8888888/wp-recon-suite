@@ -72,3 +72,6 @@ disallow_incomplete_defs = false
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v --cov=wp_recon_suite --cov-report=term-missing --cov-report=html"
+[tool.setuptools.packages.find]
+include = ["wp_recon_suite*"]
+exclude = ["results*", "examples*", "tests*"]
