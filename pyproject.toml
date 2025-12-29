@@ -8,11 +8,14 @@ version = "0.1.0"
 description = "Professional, safe-by-default WordPress reconnaissance CLI tool for Kali Linux"
 readme = "README.md"
 requires-python = ">=3.11"
-license = {text = "MIT"}
+license = { text = "MIT" }
+
 authors = [
-    {name = "WordPress Recon Suite Team"}
+    { name = "WordPress Recon Suite Team" }
 ]
+
 keywords = ["wordpress", "reconnaissance", "security", "cli", "enumeration"]
+
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Console",
@@ -52,9 +55,12 @@ dev = [
 [project.scripts]
 wp-recon-suite = "wp_recon_suite.cli:main"
 
+[tool.setuptools]
+packages = ["wp_recon_suite"]
+
 [tool.black]
 line-length = 100
-target-version = ['py311']
+target-version = ["py311"]
 
 [tool.ruff]
 line-length = 100
@@ -72,6 +78,4 @@ disallow_incomplete_defs = false
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v --cov=wp_recon_suite --cov-report=term-missing --cov-report=html"
-[tool.setuptools.packages.find]
-include = ["wp_recon_suite*"]
-exclude = ["results*", "examples*", "tests*"]
+
